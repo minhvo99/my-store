@@ -1,17 +1,28 @@
-.blog-list{
+.blog-list {
     ul > li.media {
         display: flex;
         flex-direction: row;
-        gap: 1.5rem;
-        padding: 1rem 0;
+        justify-content: space-between;
+        align-items: center;
         border-bottom: 1px solid #494848;
-        cursor: pointer;
 
-        &-body{
+        .content {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            .media-body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 15px;
+            }
+        }
+        .action{
+            display: flex;
             justify-content: center;
-            padding: 0 15px;
+            align-items: center;
         }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogService } from '@app/shared/services/blog.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-blogs',
@@ -15,6 +15,8 @@ export class BlogsComponent implements OnInit {
     $destroy: Subject<void> = new Subject<void>();
     isLoading = false;
     totalPages!: number;
+    dataToggle = '';
+    dataTarget = '';
 
     constructor(
         private blogService: BlogService,
@@ -66,6 +68,33 @@ export class BlogsComponent implements OnInit {
 
     viewDetailBlog(blogId: string | number) {
         this.route.navigate(['/blogs', blogId]);
+    }
+
+    onEditBlog() {
+        this.dataToggle = 'modal';
+        this.dataTarget = '#deleteBlogModal';
+    }
+
+    onDeleteBlog(blogId: string | number) {
+        this.isLoading = true;
+        this.blogService
+            .deleteBlog(blogId)
+            .pipe(
+                switchMap(() => {
+                    return this.blogService.getBlogs(this.currentPage, this.itemsPerPage);
+                }),
+                takeUntil(this.$destroy),
+            )
+            .subscribe({
+                next: (blogs: any) => {
+                    this.blogs = blogs;
+                    this.isLoading = false;
+                },
+                error: (err: unknown) => {
+                    console.error(err);
+                    this.isLoading = false;
+                },
+            });
     }
     ngOnDestroy(): void {
         this.$destroy.next();
