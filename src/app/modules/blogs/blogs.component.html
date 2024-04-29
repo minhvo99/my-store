@@ -1,0 +1,23 @@
+<div class="blog-list">
+    <ul class="list-unstyled" *ngFor="let item of blogs">
+        <li class="media" (click)="viewDetailBlog(item?.id)">
+            <img [src]="item?.image" style="width: 64px" class="mr-3" alt="" />
+            <div class="media-body">
+                <h5 class="mt-0 mb-1 media-body-title">{{ item?.title | titlecase }}</h5>
+                <p class="media-body-content">{{ item?.content }}</p>
+            </div>
+        </li>
+    </ul>
+    <app-loading [isLoading]="isLoading"></app-loading>
+</div>
+<nav aria-label="Page navigation example" *ngIf="blogs.length > 0">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
+            <a class="page-link" (click)="prevPage()">Previous</a>
+        </li>
+        <li class="page-item" [ngClass]="{ disabled: currentPage === totalPages }">
+            <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+    </ul>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+</nav>

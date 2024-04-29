@@ -1,1 +1,23 @@
-<p>detail-blog works!</p>
+<div class="blog-detail container">
+    <div *ngIf="blog">
+        <span class="back-to-blogs" (click)="backToBlogs()">&#8592; Back to Blogs</span>
+    </div>
+    <div class="row">
+        <div class="blog-header">
+            <h1>{{ blog?.title | titlecase }}</h1>
+            <span>Create at: {{ blog?.createdAt | date: 'MM/dd/yyyy, h:mm a' }}</span>
+        </div>
+        <div class="blog-body">
+            <img [src]="blog?.image" class="img-fluid" alt="" />
+            <p>{{ blog?.content }}</p>
+        </div>
+        <div class="sub-content" *ngIf="blog?.body">
+            <h1>{{ blog?.body?.title | titlecase }}</h1>
+            <div class="blog-body">
+                <img [src]="blog?.body?.image" class="img-fluid" alt="" />
+                <p>{{ blog?.body?.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading [isLoading]="isLoading"></app-loading>

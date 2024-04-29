@@ -1,0 +1,23 @@
+.blog-detail{
+    .back-to-blogs{
+        margin-top: 1rem;
+        color: rgb(40, 20, 214);
+        cursor: pointer;
+        
+    }
+    .blog-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .blog-body{
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        padding: 1rem 0;
+        img {
+            max-width: 200px;
+        }
+    }
+}

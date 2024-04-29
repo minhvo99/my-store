@@ -3,8 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'blogs',
     loadChildren: () => import('./modules/layout/layout.module').then(m => m.LayoutModule)
+  },
+  {
+    path: "",
+    pathMatch:"full",
+    redirectTo:"blogs"
   }
 ];
 

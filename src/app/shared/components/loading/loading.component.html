@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center flex-column overlay-progressBar">
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center flex-column overlay-progressBar">
     <div class="spinner-border text-info m-4"role="status"></div>
     <span class="sr-only sprinner-text">Loading...</span>
 </div>

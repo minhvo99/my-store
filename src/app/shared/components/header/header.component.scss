@@ -1,0 +1,15 @@
+.bg-header {
+    background-color: #02b3e4;
+  
+    .nav-bar {
+      margin: 15px 0;
+      .project-name {
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+    
+    }
+  }
