@@ -19,7 +19,7 @@ export class DetailBlogComponent implements OnInit {
         private blogService: BlogService,
     ) {
         this.route.paramMap.subscribe((params) => {
-            this.idBlog = Number(params.get('id'));
+            this.idBlog = params.get('id') as string | number;
         });
     }
 

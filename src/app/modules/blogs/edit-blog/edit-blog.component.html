@@ -1,23 +1,99 @@
-<div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="deleteBlogModal"
-    aria-hidden="true"
->
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteBlogModal">Edit Blog</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
     </div>
+    <div class="modal-body">
+      <form [formGroup]="formEdit">
+        <div class="input-group mb-3">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            class="form-control"
+            placeholder="Title"
+            formControlName="title"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <label for="content">Content</label>
+          <textarea
+            class="form-control"
+            id="content"
+            rows="3"
+            formControlName="content"
+            placeholder="Content"
+          ></textarea>
+        </div>
+        <div class="input-group mb-3">
+          <label for="img">Image URL</label>
+          <input
+            type="text"
+            id="img"
+            class="form-control"
+            placeholder="Image URL"
+            formControlName="image"
+          />
+        </div>
+        <div formGroupName="body">
+          <div class="input-group mb-3">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              placeholder="Title"
+              formControlName="titleBody"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <label for="content">Content</label>
+            <textarea
+              class="form-control"
+              id="content"
+              rows="3"
+              formControlName="contentBody"
+              placeholder="Content"
+            ></textarea>
+          </div>
+          <div class="input-group mb-3">
+            <label for="img">Image URL</label>
+            <input
+              type="text"
+              id="img"
+              class="form-control"
+              placeholder="Image URL"
+              formControlName="imageBody"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="activeModal.close('cancel')"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="activeModal.close('save')"
+      >
+        Save
+      </button>
+    </div>
+  </div>
 </div>
