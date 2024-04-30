@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, debounceTime, switchMap, takeUntil } from 'rxjs';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
+import { Blog } from '@app/shared/modal/blog';
 
 @Component({
   selector: 'app-blogs',
@@ -14,7 +15,7 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
   styleUrls: ['./blogs.component.scss'],
 })
 export class BlogsComponent implements OnInit {
-  blogs: any[] = [];
+  blogs: Blog[] = [];
   currentPage = 1;
   itemsPerPage = 6;
   $destroy: Subject<void> = new Subject<void>();
