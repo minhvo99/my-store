@@ -1,3 +1,13 @@
+.blog-header {
+    gap: 1.5rem;
+    .form-group{
+        width: 100%;
+    }
+    .add-blog{
+        width: 40px;
+        height: 40px;
+    }
+}
 .blog-list {
     ul > li.media {
         display: flex;

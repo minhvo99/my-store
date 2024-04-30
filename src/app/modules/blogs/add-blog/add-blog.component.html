@@ -1,1 +1,101 @@
-<p>add-blog works!</p>
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formAddBlog">
+          <div class="input-group mb-3 d-flex flex-column">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control w-full"
+              placeholder="Title"
+              formControlName="title"
+            />
+          </div>
+  
+          <div class="input-group mb-3 d-flex flex-column">
+            <label for="content">Content</label>
+            <textarea
+              class="form-control w-full"
+              id="content"
+              rows="3"
+              formControlName="content"
+              placeholder="Content"
+            ></textarea>
+          </div>
+          <div class="input-group mb-3 d-flex flex-column">
+            <label for="img">Image URL</label>
+            <input
+              type="text"
+              id="img"
+              class="form-control w-full"
+              placeholder="Image URL"
+              formControlName="image"
+            />
+          </div>
+          <div formGroupName="body">
+            <h4>Body</h4>
+            <div class="input-group mb-3 d-flex flex-column">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                class="form-control w-full"
+                placeholder="Title"
+                formControlName="titleBody"
+              />
+            </div>
+  
+            <div class="input-group mb-3 d-flex flex-column">
+              <label for="content">Content</label>
+              <textarea
+                class="form-control w-full"
+                id="content"
+                rows="3"
+                formControlName="contentBody"
+                placeholder="Content"
+              ></textarea>
+            </div>
+            <div class="input-group mb-3 d-flex flex-column">
+              <label for="img">Image URL</label>
+              <input
+                type="text"
+                id="img"
+                class="form-control w-full"
+                placeholder="Image URL"
+                formControlName="imageBody"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close('cancel')"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="onAddBlog()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+  

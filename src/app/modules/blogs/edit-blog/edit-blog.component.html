@@ -11,65 +11,66 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="formEdit">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 d-flex flex-column">
           <label for="title">Title</label>
           <input
             type="text"
             id="title"
-            class="form-control"
+            class="form-control w-full"
             placeholder="Title"
             formControlName="title"
           />
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 d-flex flex-column">
           <label for="content">Content</label>
           <textarea
-            class="form-control"
+            class="form-control w-full"
             id="content"
             rows="3"
             formControlName="content"
             placeholder="Content"
           ></textarea>
         </div>
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 d-flex flex-column">
           <label for="img">Image URL</label>
           <input
             type="text"
             id="img"
-            class="form-control"
+            class="form-control w-full"
             placeholder="Image URL"
             formControlName="image"
           />
         </div>
         <div formGroupName="body">
-          <div class="input-group mb-3">
+          <h4>Body</h4>
+          <div class="input-group mb-3 d-flex flex-column">
             <label for="title">Title</label>
             <input
               type="text"
               id="title"
-              class="form-control"
+              class="form-control w-full"
               placeholder="Title"
               formControlName="titleBody"
             />
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 d-flex flex-column">
             <label for="content">Content</label>
             <textarea
-              class="form-control"
+              class="form-control w-full"
               id="content"
               rows="3"
               formControlName="contentBody"
               placeholder="Content"
             ></textarea>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 d-flex flex-column">
             <label for="img">Image URL</label>
             <input
               type="text"
               id="img"
-              class="form-control"
+              class="form-control w-full"
               placeholder="Image URL"
               formControlName="imageBody"
             />
@@ -90,10 +91,11 @@
         class="btn btn-primary"
         data-dismiss="modal"
         aria-label="Close"
-        (click)="activeModal.close('save')"
+        (click)="onEditBlog()"
       >
         Save
       </button>
     </div>
   </div>
 </div>
+<app-loading [isLoading]="isLoading" ></app-loading>

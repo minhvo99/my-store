@@ -1,48 +1,73 @@
-<div class="blog-header">
-    <div class="form-group">
-        <input
-            type="text"
-            class="form-control"
-            name=""
-            id=""
-            aria-describedby="helpId"
-            placeholder="Search by content"
-        />
-    </div>
+<div
+  class="blog-header d-flex justify-content-between align-content-center mt-2"
+>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      name=""
+      id=""
+      aria-describedby="helpId"
+      placeholder="Search by content"
+      [(ngModel)]="searchTeam"
+      (keyup)="onSearch(searchTeam)"
+    />
+  </div>
+  <button
+    type="button"
+    class="btn btn-primary add-blog"
+    (click)="onAddNewBlog()"
+  >
+    +
+  </button>
 </div>
 <div class="blog-list">
-    <ul class="list-unstyled" *ngFor="let item of blogs">
-        <li class="media">
-            <div class="content" (click)="viewDetailBlog(item?.id)">
-                <img [src]="item?.image" style="width: 64px" class="mr-3" alt="" />
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1 media-body-title">{{ item?.title | titlecase }}</h5>
-                    <p class="media-body-content">{{ item?.content }}</p>
-                </div>
-            </div>
-            <div class="action">
-                <button type="button" class="btn btn-danger" (click)="onEditBlog(item)">Edit</button>
-                <button
-                    type="button"
-                    class="btn btn-warning"
-                    (click)="onDeleteBlog(item?.id)"
-                >
-                    Delete
-                </button>
-            </div>
-        </li>
+  <ul class="list-unstyled" *ngFor="let item of blogs">
+    <li class="media">
+      <div class="content" (click)="viewDetailBlog(item?.id)">
+        <img [src]="item?.image" style="width: 64px" class="mr-3" alt="" />
+        <div class="media-body">
+          <h5 class="mt-0 mb-1 media-body-title">
+            {{ item?.title | titlecase }}
+          </h5>
+          <p class="media-body-content">{{ item?.content }}</p>
+        </div>
+      </div>
+      <div class="action">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="onEditBlog(item?.id)"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="onDeleteBlog(item?.id)"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+  <nav aria-label="Page navigation example" *ngIf="blogs.length > 0">
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
+        <a class="page-link" (click)="prevPage()">Previous</a>
+      </li>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: currentPage === totalPages }"
+      >
+        <a class="page-link" (click)="nextPage()">Next</a>
+      </li>
     </ul>
-    <nav aria-label="Page navigation example" *ngIf="blogs.length > 0">
-        <ul class="pagination">
-            <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
-                <a class="page-link" (click)="prevPage()">Previous</a>
-            </li>
-            <li class="page-item" [ngClass]="{ disabled: currentPage === totalPages }">
-                <a class="page-link" (click)="nextPage()">Next</a>
-            </li>
-        </ul>
-        <span>Page {{ currentPage }} / {{ totalPages }}</span>
-    </nav>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+  </nav>
+  <div *ngIf="blogs.length === 0">
+    <h4>Data not found</h4>
+  </div>
 </div>
 <ng-container #addBlogContainer></ng-container>
 <app-loading [isLoading]="isLoading"></app-loading>
