@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BlogService } from '@app/shared/services/blog.service';
-import { ToastService } from '@app/shared/services/toast.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-blog',
@@ -37,6 +35,20 @@ export class AddBlogComponent implements OnInit {
 
   onAddBlog() {
     this.activeModal.close('created');
+  }
+
+  onCheckError(controlName: string) {
+    return (
+      this.formAddBlog.controls[controlName].errors?.['required'] &&
+      this.formAddBlog.controls[controlName].dirty
+    );
+  }
+
+  onCheckErrorBody(controlName: string) {
+    return (
+      (this.formAddBlog.get('body') as FormGroup)?.controls?.[controlName].errors?.['required'] &&
+      (this.formAddBlog.get('body') as FormGroup)?.controls[controlName].dirty
+    );
   }
 
   ngOnDestroy() {

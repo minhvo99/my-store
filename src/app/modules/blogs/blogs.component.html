@@ -18,8 +18,50 @@
     class="btn btn-primary add-blog"
     (click)="onAddNewBlog()"
   >
-    +
+    <i class="fa-solid fa-plus"></i>
   </button>
+  <div class="dropdown sort">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="dropdownMenu2"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Sort by {{ sortField | titlecase }} <i [class]="iconSort"></i>
+    </button>
+    <div
+      class="dropdown-menu"
+      aria-labelledby="dropdownMenu2"
+      (click)="onSort($event)"
+    >
+      <button
+        class="dropdown-item"
+        type="button"
+        value="id"
+        (click)="onToggleSortOrder()"
+      >
+        Id
+      </button>
+      <button
+        class="dropdown-item"
+        type="button"
+        value="title"
+        (click)="onToggleSortOrder()"
+      >
+        Title
+      </button>
+      <button
+        class="dropdown-item"
+        type="button"
+        value="content"
+        (click)="onToggleSortOrder()"
+      >
+        Content
+      </button>
+    </div>
+  </div>
 </div>
 <div class="blog-list">
   <ul class="list-unstyled" *ngFor="let item of blogs">
@@ -39,14 +81,14 @@
           class="btn btn-danger"
           (click)="onEditBlog(item?.id)"
         >
-          Edit
+          <i class="fa-solid fa-pencil"></i>
         </button>
         <button
           type="button"
           class="btn btn-warning"
           (click)="onDeleteBlog(item?.id)"
         >
-          Delete
+          <i class="fa-regular fa-trash-can"></i>
         </button>
       </div>
     </li>

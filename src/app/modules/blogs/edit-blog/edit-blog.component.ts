@@ -73,6 +73,21 @@ export class EditBlogComponent implements OnInit {
 
   onEditBlog() {
     this.activeModal.close('updated');
+    
+  }
+
+  onCheckError(controlName: string) {
+    return (
+      this.formEdit.controls[controlName].errors?.['required'] &&
+      this.formEdit.controls[controlName].dirty
+    );
+  }
+
+  onCheckErrorBody(controlName: string) {
+    return (
+      (this.formEdit.get('body') as FormGroup)?.controls?.[controlName].errors?.['required'] &&
+      (this.formEdit.get('body') as FormGroup)?.controls[controlName].dirty
+    );
   }
 
   ngOnDestroy(): void {

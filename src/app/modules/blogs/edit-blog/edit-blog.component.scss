@@ -1,3 +1,14 @@
 .w-full{
     width: 100%;
 }
+
+.field-input-invalid{
+    border-color: salmon;
+}
+.invalid-field{
+    padding-top: 5px;
+    color: salmon;
+}
+.form-control:focus{
+    box-shadow: none;
+}

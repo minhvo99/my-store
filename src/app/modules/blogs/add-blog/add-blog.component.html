@@ -19,7 +19,11 @@
               class="form-control w-full"
               placeholder="Title"
               formControlName="title"
+              [ngClass]="{'field-input-invalid': onCheckError('title')}"
             />
+            <small class="invalid-field" *ngIf="onCheckError('title')">
+              Title is required
+            </small>
           </div>
   
           <div class="input-group mb-3 d-flex flex-column">
@@ -30,7 +34,11 @@
               rows="3"
               formControlName="content"
               placeholder="Content"
+              [ngClass]="{'field-input-invalid': onCheckError('content')}"
             ></textarea>
+            <small class="invalid-field" *ngIf="onCheckError('content')">
+              Content is required
+            </small>
           </div>
           <div class="input-group mb-3 d-flex flex-column">
             <label for="img">Image URL</label>
@@ -40,7 +48,11 @@
               class="form-control w-full"
               placeholder="Image URL"
               formControlName="image"
+              [ngClass]="{'field-input-invalid': onCheckError('image')}"
             />
+            <small class="invalid-field" *ngIf="onCheckError('image')">
+              Image is required
+            </small>
           </div>
           <div formGroupName="body">
             <h4>Body</h4>
@@ -52,7 +64,11 @@
                 class="form-control w-full"
                 placeholder="Title"
                 formControlName="titleBody"
+                [ngClass]="{'field-input-invalid': onCheckErrorBody('titleBody')}"
               />
+              <small class="invalid-field" *ngIf="onCheckErrorBody('titleBody')">
+                Title is required
+              </small>
             </div>
   
             <div class="input-group mb-3 d-flex flex-column">
@@ -63,7 +79,11 @@
                 rows="3"
                 formControlName="contentBody"
                 placeholder="Content"
+                [ngClass]="{'field-input-invalid': onCheckErrorBody('contentBody')}"
               ></textarea>
+              <small class="invalid-field" *ngIf="onCheckErrorBody('contentBody')">
+                Content is required
+              </small>
             </div>
             <div class="input-group mb-3 d-flex flex-column">
               <label for="img">Image URL</label>
@@ -73,7 +93,11 @@
                 class="form-control w-full"
                 placeholder="Image URL"
                 formControlName="imageBody"
+                [ngClass]="{'field-input-invalid': onCheckErrorBody('imageBody')}"
               />
+              <small class="invalid-field" *ngIf="onCheckErrorBody('imageBody')">
+                Image is required
+              </small>
             </div>
           </div>
         </form>
@@ -91,6 +115,7 @@
           class="btn btn-primary"
           data-dismiss="modal"
           aria-label="Close"
+          [disabled]="formAddBlog.invalid"
           (click)="onAddBlog()"
         >
           Save

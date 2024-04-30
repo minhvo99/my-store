@@ -47,4 +47,10 @@ export class BlogService {
       }),
     );
   }
+
+  sortBlog(page: number, limit: number, sortField: string, orderBy: string) {
+    return this.http.get<any>(
+      `${environment.api}/blogs?page=${page}&limit=${limit}&sortBy=${sortField}&order=${orderBy}`,
+    );
+  }
 }

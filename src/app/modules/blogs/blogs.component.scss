@@ -7,6 +7,15 @@
         width: 40px;
         height: 40px;
     }
+    .sort{
+        .active{
+            color: blue;
+        }
+        .deactive{
+            color: #000;
+        
+        }
+    }
 }
 .blog-list {
     ul > li.media {

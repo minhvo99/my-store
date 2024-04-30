@@ -4,18 +4,7 @@ import { ConfirmDialogComponent } from '@app/shared/components/confirm-dialog/co
 import { BlogService } from '@app/shared/services/blog.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  Subject,
-  catchError,
-  debounce,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  of,
-  switchMap,
-  takeUntil,
-  throwError,
-} from 'rxjs';
+import { Subject, debounceTime, switchMap, takeUntil } from 'rxjs';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 
@@ -32,6 +21,9 @@ export class BlogsComponent implements OnInit {
   isLoading = false;
   totalPages!: number;
   searchTeam!: any;
+  sortField = 'id';
+  sortOder = 'asc';
+  iconSort = 'fa-solid fa-arrow-up-wide-short';
 
   constructor(
     private blogService: BlogService,
@@ -237,6 +229,31 @@ export class BlogsComponent implements OnInit {
           },
           error: (err: unknown) => {
             this.blogs = [];
+          },
+        });
+    }
+  }
+
+  onToggleSortOrder() {
+    this.sortOder = this.sortOder === 'asc' ? 'desc' : 'asc';
+    this.sortOder === 'asc' ? (this.iconSort = 'fa-solid fa-arrow-up-wide-short') : (this.iconSort = 'fa-solid fa-arrow-down-wide-short');
+  }
+
+  onSort(event: any) {
+    if (event && event.target.value) {
+      this.sortField = event.target.value;
+      this.isLoading = true;
+      this.blogService
+        .sortBlog(this.currentPage, this.itemsPerPage, event.target.value, this.sortOder)
+        .pipe(takeUntil(this.$destroy))
+        .subscribe({
+          next: (sortedBlogs: any) => {
+            this.isLoading = false;
+            this.blogs = sortedBlogs;
+          },
+          error: (err: unknown) => {
+            this.isLoading = false;
+            console.error(err);
           },
         });
     }
